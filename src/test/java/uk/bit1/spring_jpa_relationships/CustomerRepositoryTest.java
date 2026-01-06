@@ -8,8 +8,7 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 public class CustomerRepositoryTest {
@@ -49,6 +48,12 @@ public class CustomerRepositoryTest {
         assertNotNull(customer);
         assertEquals("Mouse", customer.getLastName());
         assertEquals("Mickey", customer.getFirstName());
+    }
+
+    @Test
+    void customers_can_have_zero_orders() {
+        assertDoesNotThrow(() -> testCustomer.getOrders().size());
+        assertEquals(0, testCustomer.getOrders().size());
     }
 
     @Test
