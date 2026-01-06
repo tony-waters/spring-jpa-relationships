@@ -1,7 +1,6 @@
 package uk.bit1.spring_jpa_relationships;
 
 import jakarta.persistence.*;
-//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.*;
 
@@ -17,9 +16,8 @@ public class Customer {
     private String firstName;
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    private Set<Order> orders = new HashSet<>();
-//    @JsonManaged
     private List<Order> orders = new ArrayList<>();
+
     protected Customer() {}
 
     public Customer(String lastName, String firstName) {
@@ -29,17 +27,10 @@ public class Customer {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder(
-            String.format(
-                    "[Customer[id=%d, firstName='%s', lastName='%s', orders='%s']",
-                    id, firstName, lastName, orders)
-            );
-        Iterator orderIterator = orders.iterator();
-        while(orderIterator.hasNext()) {
-            result.append(orderIterator.next().toString());
-        }
-        result.append("]");
-        return result.toString();
+        return String.format(
+                "[Customer[id=%d, firstName='%s', lastName='%s', orders='%s']",
+                id, firstName, lastName, orders
+        );
     }
 
     public void addOrder(Order order) {

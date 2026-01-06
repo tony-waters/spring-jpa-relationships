@@ -87,4 +87,13 @@ public class CustomerRepositoryTest {
         assertThrows(NullPointerException.class, () -> testCustomer.removeOrder(null));
         assertDoesNotThrow(() -> testCustomer.removeOrder(new Order("Spurious order")));
     }
+
+    @Test
+    void check_toString() {
+        testCustomer.addOrder(new Order("Order 1 for testOrder"));
+        testCustomer.addOrder(new Order("Order 2 for testOrder"));
+        customerRepository.save(testCustomer);
+        String string = testCustomer.toString();
+        assertEquals("[Customer[id=1, firstName='Jo', lastName='Bloggs', orders='[Order[id=1, description='Order 1 for testOrder'], Order[id=2, description='Order 2 for testOrder']]']", string);
+    }
 }
