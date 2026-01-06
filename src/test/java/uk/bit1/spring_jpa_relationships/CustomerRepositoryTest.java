@@ -81,4 +81,10 @@ public class CustomerRepositoryTest {
         assertEquals(1, orders.size());
         assertEquals("Order 2 for testOrder", orders.get(0).getDescription());
     }
+
+    @Test
+    void reacts_ok_when_removing_non_existent_object() {
+        assertThrows(NullPointerException.class, () -> testCustomer.removeOrder(null));
+        assertDoesNotThrow(() -> testCustomer.removeOrder(new Order("Spurious order")));
+    }
 }
