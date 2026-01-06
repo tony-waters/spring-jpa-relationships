@@ -63,4 +63,17 @@ public class CustomerRepositoryTest {
         assertEquals("Order 1 for testOrder", orders.get(0).getDescription());
         assertEquals("Order 2 for testOrder", orders.get(1).getDescription());
     }
+
+    @Test
+    void customer_can_have_orders_removed() {
+        testCustomer.addOrder(new Order("Order 1 for testOrder"));
+        testCustomer.addOrder(new Order("Order 2 for testOrder"));
+        customerRepository.save(testCustomer);
+        testCustomer.removeOrder(testCustomer.getOrders().get(0));
+
+        Customer customer = customerRepository.findById(testCustomer.getId()).orElse(null);
+        List<Order> orders = customer.getOrders();
+        assertEquals(1, orders.size());
+        assertEquals("Order 2 for testOrder", orders.get(0).getDescription());
+    }
 }
