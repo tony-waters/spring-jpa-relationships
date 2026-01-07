@@ -51,7 +51,7 @@ public class CustomerRepositoryTest {
     }
 
     @Test
-    void customers_can_have_zero_orders() {
+    void customer_can_have_zero_orders() {
         assertDoesNotThrow(() -> testCustomer.getOrders().size());
         assertEquals(0, testCustomer.getOrders().size());
     }
