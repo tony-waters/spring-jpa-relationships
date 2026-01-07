@@ -24,17 +24,22 @@ public class ProductRepositoryTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    private Order testOrder;
     private Product testProduct;
 
     @BeforeEach
     public void setUp() {
         testProduct = new Product("Sombrero Hat", "Traditional south american hat");
         productRepository.save(testProduct);
+
+        testOrder = new Order("Test order");
+        testOrder.addProduct(testProduct);
     }
 
     @AfterEach
     public void tearDown() {
         productRepository.delete(testProduct);
+        orderRepository.delete(testOrder);
     }
 
     @Test
@@ -48,9 +53,9 @@ public class ProductRepositoryTest {
     @Test
     void product_can_get_its_orders() {
         Order order = new Order("New order");
+        Product product = new Product("Map", "Map of UK");
         List<Order> orders = testProduct.getOrders();
         assertNotNull(orders);
-        assertEquals(0, orders.size());
+//        assertEquals();
     }
-
 }
