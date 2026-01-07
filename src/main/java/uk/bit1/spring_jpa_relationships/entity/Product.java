@@ -2,6 +2,7 @@ package uk.bit1.spring_jpa_relationships.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,9 +17,8 @@ public class Product {
     private String description;
 
     @ManyToMany
-//    @JoinColumn(name = "order_id")
-    @JoinTable
-    private List<Order> orders;
+//    @JoinTable
+    private List<Order> orders = new ArrayList<>();
 
     protected Product() {
     }
@@ -26,6 +26,10 @@ public class Product {
     public Product(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
     public Long getId() {
