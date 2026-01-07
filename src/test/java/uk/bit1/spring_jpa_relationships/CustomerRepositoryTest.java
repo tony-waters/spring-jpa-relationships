@@ -71,10 +71,13 @@ public class CustomerRepositoryTest {
 
     @Test
     void customer_can_have_orders_removed() {
-        testCustomer.addOrder(new Order("Order 1 for testOrder"));
-        testCustomer.addOrder(new Order("Order 2 for testOrder"));
+        Order order1 = new Order("Order 1 for testOrder");
+        Order order2 = new Order("Order 2 for testOrder");
+        testCustomer.addOrder(order1);
+        testCustomer.addOrder(order2);
         customerRepository.save(testCustomer);
         testCustomer.removeOrder(testCustomer.getOrders().get(0));
+        customerRepository.save(testCustomer);
 
         Customer customer = customerRepository.findById(testCustomer.getId()).orElse(null);
         List<Order> orders = customer.getOrders();
