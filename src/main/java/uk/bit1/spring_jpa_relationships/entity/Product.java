@@ -17,7 +17,6 @@ public class Product {
     private String description;
 
     @ManyToMany
-//    @JoinTable
     private List<Order> orders = new ArrayList<>();
 
     protected Product() {
