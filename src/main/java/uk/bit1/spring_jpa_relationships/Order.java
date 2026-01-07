@@ -20,13 +20,7 @@ public class Order {
 
     public Order(String description) {
         this.description = description;
-    }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Order[id=%d, description='%s']",
-                id, description);
     }
 
     public Long getId() {
@@ -51,5 +45,12 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Order[id=%d, description='%s']",
+                id, description);
     }
 }

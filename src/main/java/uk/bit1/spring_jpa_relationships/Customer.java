@@ -25,14 +25,6 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "[Customer[id=%d, firstName='%s', lastName='%s', orders='%s']",
-                id, firstName, lastName, orders
-        );
-    }
-
     public void addOrder(Order order) {
         orders.add(order);
         order.setCustomer(this);
@@ -71,5 +63,13 @@ public class Customer {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "[Customer[id=%d, firstName='%s', lastName='%s', orders='%s']",
+                id, firstName, lastName, orders
+        );
     }
 }
