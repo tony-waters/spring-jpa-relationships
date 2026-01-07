@@ -52,10 +52,14 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void product_can_get_its_orders_and_order_can_get_its_products() {
+    void product_can_get_its_orders() {
         assertNotNull(testProduct.getOrders());
+        assertEquals(1, testProduct.getOrders().size());
+    }
+
+    @Test
+    void order_can_get_its_products() {
         assertNotNull(testOrder.getProducts());
         assertEquals(1, testOrder.getProducts().size());
-        assertEquals(1, testProduct.getOrders().size());
     }
 }
