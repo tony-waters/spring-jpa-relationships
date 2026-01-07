@@ -1,4 +1,4 @@
-package uk.bit1.spring_jpa_relationships;
+package uk.bit1.spring_jpa_relationships.entity;
 
 import jakarta.persistence.*;
 

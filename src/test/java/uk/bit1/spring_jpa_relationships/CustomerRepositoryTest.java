@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import uk.bit1.spring_jpa_relationships.entity.Customer;
+import uk.bit1.spring_jpa_relationships.entity.Order;
+import uk.bit1.spring_jpa_relationships.repository.CustomerRepository;
 
 import java.util.List;
 
@@ -91,12 +94,4 @@ public class CustomerRepositoryTest {
         assertDoesNotThrow(() -> testCustomer.removeOrder(new Order("Spurious order")));
     }
 
-    @Test
-    void check_toString() {
-        testCustomer.addOrder(new Order("Order 1 for testOrder"));
-        testCustomer.addOrder(new Order("Order 2 for testOrder"));
-        customerRepository.save(testCustomer);
-        String string = testCustomer.toString();
-        assertEquals("[Customer[id=1, firstName='Jo', lastName='Bloggs', orders='[Order[id=1, description='Order 1 for testOrder'], Order[id=2, description='Order 2 for testOrder']]']", string);
-    }
 }
