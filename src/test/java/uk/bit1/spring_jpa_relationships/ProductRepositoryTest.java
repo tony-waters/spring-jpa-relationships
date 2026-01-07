@@ -25,6 +25,7 @@ public class ProductRepositoryTest {
     private OrderRepository orderRepository;
 
     private Order testOrder;
+
     private Product testProduct;
 
     @BeforeEach
@@ -51,11 +52,10 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void product_can_get_its_orders() {
-        Order order = new Order("New order");
-        Product product = new Product("Map", "Map of UK");
-        List<Order> orders = testProduct.getOrders();
-        assertNotNull(orders);
-//        assertEquals();
+    void product_can_get_its_orders_and_order_can_get_its_products() {
+        assertNotNull(testProduct.getOrders());
+        assertNotNull(testOrder.getProducts());
+        assertEquals(1, testOrder.getProducts().size());
+        assertEquals(1, testProduct.getOrders().size());
     }
 }

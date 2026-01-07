@@ -46,6 +46,10 @@ public class Order {
         return customer;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
